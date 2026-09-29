@@ -1,0 +1,7 @@
+data/
+*.parquet
+*.csv
+.ipynb_checkpoints/
+spark-warehouse/
+metastore_db/
+derby.log
