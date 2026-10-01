@@ -1,0 +1,266 @@
+[NbConvertApp] Converting notebook 02_precision_levels.ipynb to notebook
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/10/01 14:04:16 WARN Utils: Your hostname, BDSP, resolves to a loopback address: 127.0.1.1; using 10.0.2.15 instead (on interface enp0s3)
+26/10/01 14:04:16 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/01 14:04:18 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+26/10/01 14:04:19 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in standalone/kubernetes and LOCAL_DIRS in YARN).
+[Stage 0:>                                                          (0 + 1) / 1]                                                                                [Stage 1:>                                                          (0 + 4) / 5][Stage 1:=======================>                                   (2 + 3) / 5][Stage 1:===================================>                       (3 + 2) / 5]                                                                                [Stage 2:>                                                          (0 + 4) / 5][Stage 2:===========>                                               (1 + 4) / 5][Stage 2:=======================>                                   (2 + 3) / 5][Stage 2:===================================>                       (3 + 2) / 5][Stage 2:===============================================>           (4 + 1) / 5]Traceback (most recent call last):
+  File "/home/hduser/ca1env/bin/jupyter-nbconvert", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/jupyter_core/application.py", line 284, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/traitlets/config/application.py", line 1080, in launch_instance
+    app.start()
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hduser/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/hduser/ca1env/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Writing the keyed base once to HDFS and reading it back, so the ids never change
+keyed.write.mode("overwrite").option("compression", CODEC).parquet(KEYED)
+keyed = spark.read.parquet(KEYED)
+keyed.count()   # expected 9,213,529
+------------------
+
+----- stderr -----
+[Stage 1:>                                                          (0 + 4) / 5]
+----- stderr -----
+[Stage 1:=======================>                                   (2 + 3) / 5]
+----- stderr -----
+[Stage 1:===================================>                       (3 + 2) / 5]
+----- stderr -----
+[Stage 2:>                                                          (0 + 4) / 5]
+----- stderr -----
+[Stage 2:===========>                                               (1 + 4) / 5][Stage 2:=======================>                                   (2 + 3) / 5]
+----- stderr -----
+[Stage 2:===================================>                       (3 + 2) / 5]
+----- stderr -----
+[Stage 2:===============================================>           (4 + 1) / 5]
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mPy4JJavaError[39m                             Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m# Writing the keyed base once to HDFS and reading it back, so the ids never change[39;00m
+[32m----> [39m[32m2[39m keyed.write.mode([33m"overwrite"[39m).option([33m"compression"[39m, CODEC).parquet(KEYED)
+[32m      3[39m keyed = spark.read.parquet(KEYED)
+[32m      4[39m keyed.count()   [38;5;66;03m# expected 9,213,529[39;00m
+
+[36mFile [39m[32m~/ca1env/lib/python3.12/site-packages/pyspark/sql/readwriter.py:2093[39m, in [36mDataFrameWriter.parquet[39m[34m(self, path, mode, partitionBy, compression)[39m
+[32m   2091[39m     [38;5;28mself[39m.partitionBy(partitionBy)
+[32m   2092[39m [38;5;28mself[39m._set_opts(compression=compression)
+[32m-> [39m[32m2093[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m_jwrite[39;49m[30;43m.[39;49m[30;43mparquet[39;49m[30;43m([39;49m[30;43mpath[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/ca1env/lib/python3.12/site-packages/py4j/java_gateway.py:1362[39m, in [36mJavaMember.__call__[39m[34m(self, *args)[39m
+[32m   1356[39m command = proto.CALL_COMMAND_NAME +\
+[32m   1357[39m     [38;5;28mself[39m.command_header +\
+[32m   1358[39m     args_command +\
+[32m   1359[39m     proto.END_COMMAND_PART
+[32m   1361[39m answer = [38;5;28mself[39m.gateway_client.send_command(command)
+[32m-> [39m[32m1362[39m return_value = [30;43mget_return_value[39;49m[30;43m([39;49m
+[32m   1363[39m [30;43m    [39;49m[30;43manswer[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mgateway_client[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtarget_id[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mname[39;49m[30;43m)[39;49m
+[32m   1365[39m [38;5;28;01mfor[39;00m temp_arg [38;5;129;01min[39;00m temp_args:
+[32m   1366[39m     [38;5;28;01mif[39;00m [38;5;28mhasattr[39m(temp_arg, [33m"[39m[33m_detach[39m[33m"[39m):
+
+[36mFile [39m[32m~/ca1env/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py:251[39m, in [36mcapture_sql_exception.<locals>.deco[39m[34m(*a, **kw)[39m
+[32m    248[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpy4j[39;00m[34;01m.[39;00m[34;01mprotocol[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Py4JJavaError
+[32m    250[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m251[39m     [38;5;28;01mreturn[39;00m [30;43mf[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43ma[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkw[39;49m[30;43m)[39;49m
+[32m    252[39m [38;5;28;01mexcept[39;00m Py4JJavaError [38;5;28;01mas[39;00m e:
+[32m    253[39m     converted = convert_exception(e.java_exception)
+
+[36mFile [39m[32m~/ca1env/lib/python3.12/site-packages/py4j/protocol.py:327[39m, in [36mget_return_value[39m[34m(answer, gateway_client, target_id, name)[39m
+[32m    325[39m value = OUTPUT_CONVERTER[[38;5;28mtype[39m](answer[[32m2[39m:], gateway_client)
+[32m    326[39m [38;5;28;01mif[39;00m answer[[32m1[39m] == REFERENCE_TYPE:
+[32m--> [39m[32m327[39m     [38;5;28;01mraise[39;00m Py4JJavaError(
+[32m    328[39m         [33m"[39m[33mAn error occurred while calling [39m[38;5;132;01m{0}[39;00m[38;5;132;01m{1}[39;00m[38;5;132;01m{2}[39;00m[33m.[39m[38;5;130;01m\n[39;00m[33m"[39m.
+[32m    329[39m         [38;5;28mformat[39m(target_id, [33m"[39m[33m.[39m[33m"[39m, name), value)
+[32m    330[39m [38;5;28;01melse[39;00m:
+[32m    331[39m     [38;5;28;01mraise[39;00m Py4JError(
+[32m    332[39m         [33m"[39m[33mAn error occurred while calling [39m[38;5;132;01m{0}[39;00m[38;5;132;01m{1}[39;00m[38;5;132;01m{2}[39;00m[33m. Trace:[39m[38;5;130;01m\n[39;00m[38;5;132;01m{3}[39;00m[38;5;130;01m\n[39;00m[33m"[39m.
+[32m    333[39m         [38;5;28mformat[39m(target_id, [33m"[39m[33m.[39m[33m"[39m, name, value))
+
+[31mPy4JJavaError[39m: An error occurred while calling o91.parquet.
+: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot delete /ca1/clean/yellow_2024q1_keyed. Name node is in safe mode.
+The reported blocks 115 needs additional 2 blocks to reach the threshold 0.9990 of total blocks 118.
+The minimum number of live datanodes is not required. Safe mode will be turned off automatically once the thresholds have been reached. NamenodeHostName:localhost
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.newSafemodeException(FSNamesystem.java:1661)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1648)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.delete(FSNamesystem.java:3387)
+	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.delete(NameNodeRpcServer.java:1144)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.delete(ClientNamenodeProtocolServerSideTranslatorPB.java:735)
+	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine2.java:621)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine2.java:589)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine2.java:573)
+	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1228)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1246)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1169)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.base/javax.security.auth.Subject.doAs(Subject.java:439)
+	at org.apache.hadoop.security.authentication.util.SubjectUtil.doAs(SubjectUtil.java:247)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1951)
+	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:3198)
+
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:481)
+	at org.apache.hadoop.ipc.RemoteException.instantiateException(RemoteException.java:121)
+	at org.apache.hadoop.ipc.RemoteException.unwrapRemoteException(RemoteException.java:88)
+	at org.apache.hadoop.hdfs.DFSClient.delete(DFSClient.java:1694)
+	at org.apache.hadoop.hdfs.DistributedFileSystem$19.doCall(DistributedFileSystem.java:1014)
+	at org.apache.hadoop.hdfs.DistributedFileSystem$19.doCall(DistributedFileSystem.java:1011)
+	at org.apache.hadoop.fs.FileSystemLinkResolver.resolve(FileSystemLinkResolver.java:81)
+	at org.apache.hadoop.hdfs.DistributedFileSystem.delete(DistributedFileSystem.java:1021)
+	at org.apache.spark.internal.io.FileCommitProtocol.deleteWithJob(FileCommitProtocol.scala:188)
+	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.deleteMatchingPartitions(InsertIntoHadoopFsRelationCommand.scala:243)
+	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:136)
+	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:117)
+	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:115)
+	at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:129)
+	at org.apache.spark.sql.execution.adaptive.AdaptiveSparkPlanExec.$anonfun$executeCollect$1(AdaptiveSparkPlanExec.scala:408)
+	at org.apache.spark.sql.execution.adaptive.ResultQueryStageExec.$anonfun$doMaterialize$1(QueryStageExec.scala:328)
+	at org.apache.spark.sql.execution.SQLExecutionThreadLocalCaptured.$anonfun$runWith$2(SQLExecution.scala:63)
+	at org.apache.spark.sql.execution.SQLExecution$.withSessionTagsApplied(SQLExecution.scala:352)
+	at org.apache.spark.sql.execution.SQLExecutionThreadLocalCaptured.$anonfun$runWith$1(SQLExecution.scala:61)
+	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+	at org.apache.spark.sql.execution.SQLExecutionThreadLocalCaptured.runWith(SQLExecution.scala:57)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withThreadLocalCaptured$1(SQLExecution.scala:401)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.spark.util.Utils$.getTryWithCallerStacktrace(Utils.scala:1457)
+	at org.apache.spark.util.LazyTry.get(LazyTry.scala:61)
+	at org.apache.spark.sql.execution.QueryExecution.$anonfun$commandExecuted$1(QueryExecution.scala:224)
+	at org.apache.spark.sql.execution.QueryExecution.withAbortTransactionOnFailure(QueryExecution.scala:632)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:224)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:309)
+	at org.apache.spark.sql.classic.DataFrameWriter.runCommand(DataFrameWriter.scala:615)
+	at org.apache.spark.sql.classic.DataFrameWriter.save(DataFrameWriter.scala:115)
+	at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:381)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:184)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot delete /ca1/clean/yellow_2024q1_keyed. Name node is in safe mode.
+The reported blocks 115 needs additional 2 blocks to reach the threshold 0.9990 of total blocks 118.
+The minimum number of live datanodes is not required. Safe mode will be turned off automatically once the thresholds have been reached. NamenodeHostName:localhost
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.newSafemodeException(FSNamesystem.java:1661)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1648)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.delete(FSNamesystem.java:3387)
+	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.delete(NameNodeRpcServer.java:1144)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.delete(ClientNamenodeProtocolServerSideTranslatorPB.java:735)
+	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine2.java:621)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine2.java:589)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine2.java:573)
+	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1228)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1246)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:1169)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:712)
+	at java.base/javax.security.auth.Subject.doAs(Subject.java:439)
+	at org.apache.hadoop.security.authentication.util.SubjectUtil.doAs(SubjectUtil.java:247)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1951)
+	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:3198)
+
+	at org.apache.hadoop.ipc.Client.warpIOException(Client.java:1614)
+	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1605)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1558)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1474)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Invoker.invoke(ProtobufRpcEngine2.java:259)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Invoker.invoke(ProtobufRpcEngine2.java:140)
+	at jdk.proxy2/jdk.proxy2.$Proxy46.delete(Unknown Source)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.lambda$delete$19(ClientNamenodeProtocolTranslatorPB.java:596)
+	at org.apache.hadoop.ipc.internal.ShadedProtobufHelper.ipc(ShadedProtobufHelper.java:160)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolTranslatorPB.delete(ClientNamenodeProtocolTranslatorPB.java:596)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:437)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeMethod(RetryInvocationHandler.java:170)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invoke(RetryInvocationHandler.java:162)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler$Call.invokeOnce(RetryInvocationHandler.java:100)
+	at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:366)
+	at jdk.proxy2/jdk.proxy2.$Proxy47.delete(Unknown Source)
+	at org.apache.hadoop.hdfs.DFSClient.delete(DFSClient.java:1692)
+	at org.apache.hadoop.hdfs.DistributedFileSystem$19.doCall(DistributedFileSystem.java:1014)
+	at org.apache.hadoop.hdfs.DistributedFileSystem$19.doCall(DistributedFileSystem.java:1011)
+	at org.apache.hadoop.fs.FileSystemLinkResolver.resolve(FileSystemLinkResolver.java:81)
+	at org.apache.hadoop.hdfs.DistributedFileSystem.delete(DistributedFileSystem.java:1021)
+	at org.apache.spark.internal.io.FileCommitProtocol.deleteWithJob(FileCommitProtocol.scala:188)
+	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.deleteMatchingPartitions(InsertIntoHadoopFsRelationCommand.scala:243)
+	at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:136)
+	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:117)
+	at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:115)
+	at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:129)
+	at org.apache.spark.sql.execution.adaptive.AdaptiveSparkPlanExec.$anonfun$executeCollect$1(AdaptiveSparkPlanExec.scala:408)
+	at org.apache.spark.sql.execution.adaptive.ResultQueryStageExec.$anonfun$doMaterialize$1(QueryStageExec.scala:328)
+	at org.apache.spark.sql.execution.SQLExecutionThreadLocalCaptured.$anonfun$runWith$2(SQLExecution.scala:63)
+	at org.apache.spark.sql.execution.SQLExecution$.withSessionTagsApplied(SQLExecution.scala:352)
+	at org.apache.spark.sql.execution.SQLExecutionThreadLocalCaptured.$anonfun$runWith$1(SQLExecution.scala:61)
+	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+	at org.apache.spark.sql.execution.SQLExecutionThreadLocalCaptured.runWith(SQLExecution.scala:57)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withThreadLocalCaptured$1(SQLExecution.scala:401)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	... 1 more
+
+
