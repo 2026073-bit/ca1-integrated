@@ -1,0 +1,13 @@
+{
+  "final_config": {
+    "zone_mode": "embedding"
+  },
+  "best_phase": "P2",
+  "seed": 1234,
+  "train_buckets": 200,
+  "eval_buckets": 200,
+  "y_scale": 600.0,
+  "batch": 1024,
+  "epochs": 100,
+  "patience": 5
+}
