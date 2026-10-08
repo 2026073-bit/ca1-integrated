@@ -1,11 +1,8 @@
 {
-  "final_config": {
-    "zone_mode": "embedding"
-  },
-  "best_phase": "P2",
+  "phase": "P2",
+  "scaler": "standard",
   "seed": 1234,
-  "train_buckets": 200,
-  "eval_buckets": 200,
+  "margin_pct": 1.0,
   "y_scale": 600.0,
   "batch": 1024,
   "epochs": 100,
