@@ -1,6 +1,6 @@
 # CA1 Integrated Assessment MSc Data Analytics CCT Semester 2
-## Paper Title
-**The Precision Budget of Columnar Storage: CSV, Parquet and Neural Networks on Large-Scale Tabular Data**
+
+## Paper Name :  **The Precision Budget of Columnar Storage: CSV, Parquet and Neural Networks on Large-Scale Tabular Data**
 
 The chosen topic is columnar storage and neural networks, with a focus on the numerical precision of training data. CSV is still the most common format to exchange data, but it stores every number as text, and a reader must scan every full line even when it needs only two columns. Columnar formats such as Parquet, read by engines such as Apache Spark, read only the columns a query needs (Armbrust et al., 2015). Besides the format, whoever designs a table also decides the precision of each column, and this decision is rarely checked against the model trained later. This project measures both sides in one pipeline, the storage cost of the format, the codec and the precision, and the effect of each precision level on the error of a Multilayer Perceptron (MLP) that predicts the duration of New York taxi trips.
 
